@@ -151,4 +151,4 @@ public class Bacteria {
 	  public char[][] getFBact180() {
 	    return bactF180;
 	  }
-	}
+}
