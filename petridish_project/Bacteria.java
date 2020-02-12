@@ -37,6 +37,14 @@ public class Bacteria {
 	    bactF90CounterClockwise = makeBact90CC(bactFlipped);
 	    bactF180 = makeBact90CC(bactF90CounterClockwise);
 	    bactF90Clockwise = makeBact90CC(bactF180);
+	    
+	    for (int i = 0; i < normalBact.length; i++) {
+	    	for (int j = 0; j < normalBact[i].length; j++) {
+	    		System.out.print(normalBact[i][j]);
+	    	}
+	    	System.out.println("");
+	    }
+	    System.out.println("/////////// " + name + " " + normalBact.length + " " + normalBact[0].length);
 	  }
 
 	  // Turns bacteria 90 degrees counter-clockwise
@@ -151,4 +159,4 @@ public class Bacteria {
 	  public char[][] getFBact180() {
 	    return bactF180;
 	  }
-}
+	}
