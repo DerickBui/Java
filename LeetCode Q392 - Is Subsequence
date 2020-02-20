@@ -1,0 +1,21 @@
+class Solution {
+    public boolean isSubsequence(String s, String t) {
+        int s_size = s.length();
+        int marker = 0;
+        
+        for (int i = 0; i < t.length(); i++) {
+            if (marker < s_size) {
+                if (s.charAt(marker) == t.charAt(i)) {
+                    marker++;
+                }   
+            }
+        }
+        
+        if (marker == s_size) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
