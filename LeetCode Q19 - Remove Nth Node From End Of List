@@ -28,7 +28,7 @@ class Solution {
                     head = head.next;
                     return head;
                 }
-                else if ((pointerB == head) && (n != 1)) {
+                else if ((pointerB == head) && (n != 1) && (pointerB == pointer1)) {
                     head = head.next;
                     return head;
                 }
