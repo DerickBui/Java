@@ -3,5 +3,5 @@
 Repository full of Java Projects.
 
 Contains:
-  - LeetCodes
+  - Personal LeetCodes Solutions
   - Projects
