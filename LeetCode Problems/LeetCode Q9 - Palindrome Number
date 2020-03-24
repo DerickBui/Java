@@ -1,0 +1,14 @@
+class Solution {
+    public boolean isPalindrome(int x) {
+        String num = Integer.toString(x);
+        String newNum = "";
+        for (int i = num.length()-1; i >= 0; i--) {
+            newNum += num.charAt(i);
+        }
+        
+        if (num.equals(newNum)) {
+            return true;
+        }
+        return false;
+    }
+}
