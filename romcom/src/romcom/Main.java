@@ -19,9 +19,15 @@ public class Main {
 
       if (days == 0) {
         System.out.println(0);
+        outputFile.println(0);
       }
-      else if (days == 1 || drones == 1) {
+      else if (days == 1) {
         System.out.println(1);
+        outputFile.println(1);
+      }
+      else if (drones == 1) {
+    	  System.out.println(days);
+    	  outputFile.println(days);
       }
       else {
         for (int i = 1; i <= drones; i++) { //days
