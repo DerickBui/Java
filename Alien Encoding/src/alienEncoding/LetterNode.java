@@ -20,8 +20,10 @@ public class LetterNode {
   }
 
   public void addLetterNode(LetterNode child) {
-    this.id = child.id + this.id;
+	if (this.id.length() < 9997) {
+		this.id += child.id;
+	}
     this.frequency += child.frequency;
-    this.children.add(0, child);
+    this.children.add(child);
   }
 }
