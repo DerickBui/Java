@@ -5,6 +5,7 @@ import java.util.ArrayList;
 public class LetterNode {
   String id;
   int frequency;
+  String kits;
   ArrayList<LetterNode> children;
   
   public LetterNode() {

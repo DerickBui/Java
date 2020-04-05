@@ -3,10 +3,10 @@ package alienEncoding;
 import java.io.File;
 import java.util.Scanner; //for reading files
 import java.io.PrintWriter; //for outputing files
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.FileNotFoundException;
 import java.util.PriorityQueue;
+import java.util.LinkedList;
 import java.util.Comparator;
 
 public class Main {
@@ -14,10 +14,12 @@ public class Main {
     try {
       File inputFile = new File("input.txt");
       Scanner readFile = new Scanner(inputFile);
+      PrintWriter outputFile = new PrintWriter("output.txt");
 
       int k_value = Integer.parseInt(readFile.nextLine());
 
       PriorityQueue<LetterNode> nodes = new PriorityQueue<LetterNode>(new MyComparator());
+      LinkedList<LetterNode> store = new LinkedList<LetterNode>();
 
       while (readFile.hasNextLine()) {
     	  String line = readFile.nextLine();
@@ -27,6 +29,7 @@ public class Main {
     	  nodes.add(new LetterNode(ALetter, AFrequency));
       }
       
+      //Huffman's coding starts here
       while (nodes.size() >= k_value) {
     	  LetterNode newNode = new LetterNode();
     	  for (int i = 0; i < k_value; i++) {
@@ -43,47 +46,30 @@ public class Main {
     	  nodes.add(newNode);
       }
       
-      printLeaf(nodes.peek());
+      //store ordered leaves in linkedlist
+      searchLeaf(nodes.peek(), store);
       
-
-
-//      //add weight to each node? heavier weight do opposite
-//      //new nodes after initial will have negative weight
-      
-//      LetterNode root = new LetterNode("", 0);
-//      LetterNode child1 = new LetterNode("A", 1);
-//      LetterNode child2 = new LetterNode("B", 1);
-//      LetterNode child3 = new LetterNode("C", 1);
-//      LetterNode child4 = new LetterNode("D", 1);
-//      
-//      child1.addLetterNode(child2);
-//      child1.addLetterNode(child3);
-//      child1.addLetterNode(child4);
-//      root.addLetterNode(child1);
-//      root.addLetterNode(child2);
-//      
-//      System.out.println(root.id);
-//      
-//      printLeaf(root);
-
-      //use Integer.toString() for id
-      
+      for (LetterNode node : store) {
+    	  System.out.println(node.id + " " + node.kits);
+    	  outputFile.println(node.id + " " + node.kits);
+      }
 
       readFile.close();
+      outputFile.close();
     }
     catch (FileNotFoundException ex) {
       System.out.println("Input file not found");
     }
   }
   
-  public static void printLeaf(LetterNode node) {
+  public static void searchLeaf(LetterNode node, LinkedList<LetterNode> store) {
 	  if (!(node.children.isEmpty())) {
 		  try {
-			  PrintWriter outputFile = new PrintWriter("output2.txt"); //check
+			  PrintWriter outputFile = new PrintWriter("output.txt"); //check
 			  outputFile.print("");
 			  outputFile.close();
 			  for (int i = 0; i < node.children.size(); i++) {
-				  printLeaf(node.children.get(i), Integer.toString(i));
+				  searchLeaf(node.children.get(i), Integer.toString(i), store);
 			  }
 		  }
 		  catch (IOException ex) {
@@ -92,22 +78,15 @@ public class Main {
 	  }
   }
   
-  private static void printLeaf(LetterNode node, String tag) {
+  private static void searchLeaf(LetterNode node, String tag, LinkedList<LetterNode> store) {
 	  if (node.children.isEmpty()) {
-		  //System.out.println(node.id + " " + tag);
-		  try {
-			  PrintWriter outputFile = new PrintWriter(new FileWriter("output2.txt", true)); //check
-			  outputFile.write(node.id + " " + tag + "\n");
-			  outputFile.close();
-		  }
-		  catch (IOException ex) {
-			  System.out.println("File Not Found");
-		  }
+		  node.kits = tag;
+		  store.add(node);
 	  }
 	  else {
 		  for (int i = 0; i < node.children.size(); i++) {
 			  String newTag = tag + "-" + i;
-			  printLeaf(node.children.get(i), newTag);
+			  searchLeaf(node.children.get(i), newTag, store);
 		  }
 	  }
   }
@@ -115,14 +94,17 @@ public class Main {
 
 class MyComparator implements Comparator<LetterNode> { 
     public int compare(LetterNode x, LetterNode y) {
-        if (x.frequency > y.frequency) {
+    	int xint = x.frequency;
+    	int yint = y.frequency;
+        if (xint > yint) {
         	return 1;
         }
-        else if (x.frequency < y.frequency) {
+        else if (xint < yint) {
         	return -1;
         }
         else {
-        	return x.id.compareTo(y.id);
+        	//x.id.compareTo(y.id)
+        	return 0;
         }
     } 
 }
