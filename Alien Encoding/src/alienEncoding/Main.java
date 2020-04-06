@@ -12,15 +12,19 @@ import java.util.Comparator;
 public class Main {
   public static void main(String[] args) {
     try {
+      //Read file
       File inputFile = new File("input.txt");
       Scanner readFile = new Scanner(inputFile);
       PrintWriter outputFile = new PrintWriter("output.txt");
 
+      //value for k-its
       int k_value = Integer.parseInt(readFile.nextLine());
 
+      //Data structures used
       PriorityQueue<LetterNode> nodes = new PriorityQueue<LetterNode>(new MyComparator());
       LinkedList<LetterNode> store = new LinkedList<LetterNode>();
 
+      //Create nodes
       while (readFile.hasNextLine()) {
     	  String line = readFile.nextLine();
     	  String ALetter = line.substring(0, 4);
@@ -49,6 +53,7 @@ public class Main {
       //store ordered leaves in linkedlist
       searchLeaf(nodes.peek(), store);
       
+      //output final results
       for (LetterNode node : store) {
     	  System.out.println(node.id + " " + node.kits);
     	  outputFile.println(node.id + " " + node.kits);
