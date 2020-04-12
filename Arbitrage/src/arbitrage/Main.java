@@ -33,15 +33,19 @@ public class Main {
       // }
       
       //normal APSP calculation, does not take arbitrage weight into account
-//      for (int k = 0; k < grid.length; k++) {
-//          for (int i = 0; i < grid.length; i++) {
-//        	  for (int j = 0; j < grid.length; j++) {
-//        		  if (grid[i][j] > (grid[i][k] + grid[k][j])) {
-//        			  grid[i][j] = grid[i][k] + grid[k][j];
-//        		  }
-//        	  }
-//          }
-//      }
+      for (int k = 0; k < grid.length; k++) {
+          for (int i = 0; i < grid.length; i++) {
+        	  for (int j = 0; j < grid.length; j++) {
+        		  if (grid[i][j] > (grid[i][k] + grid[k][j])) {
+        			  grid[i][j] = grid[i][k] + grid[k][j];
+        		  }
+        	  }
+          }
+      }
+      
+      for (int i = 0; i < grid.length; i++) { 
+    	  System.out.println(grid[i][i]);
+      }
       
 
       
