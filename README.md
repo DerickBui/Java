@@ -6,6 +6,6 @@ Contains:
   - Personal LeetCodes Solutions
   - Projects
   
-Favorite Projects: (Screw 328)
+Favorite Projects:
   - Alien Encoding
   - Arbitrage
