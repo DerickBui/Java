@@ -7,5 +7,5 @@ Contains:
   - Projects
   
 Favorite Projects:
-  - Alien Encoding
+  - Alien Encoding (Actually Easy)
   - Arbitrage
