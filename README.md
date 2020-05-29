@@ -8,4 +8,4 @@ Contains:
   
 Favorite Projects:
   - Alien Encoding (Actually Easy)
-  - Arbitrage (Hard)
+  - Arbitrage (Hard, not kidding)
