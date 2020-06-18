@@ -1,0 +1,35 @@
+class Solution {
+    public int[] plusOne(int[] digits) {
+        if (digits.length == 0) {
+            int [] empty = {1};
+            return empty;
+        }
+        
+        digits[digits.length - 1]++;
+        
+        boolean extension = false;
+        
+        int tracker = digits.length - 1;
+        while ((tracker != -1) && (digits[tracker] >= 10)) {
+            digits[tracker] -= 10;
+            if (tracker != 0) {
+                digits[tracker - 1]++;
+            }
+            else {
+                extension = true;
+            }
+            tracker--;
+        }
+        
+        if (extension) {
+            int [] newDigits = new int[digits.length + 1];
+            newDigits[0] = 1;
+            for (int i = 0; i < digits.length - 1; i++) {
+                newDigits[i+1] = digits[i];
+            }
+            digits = newDigits;
+        }
+        
+        return digits;
+    }
+}
