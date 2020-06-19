@@ -1,0 +1,89 @@
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode rotateRight(ListNode head, int k) {
+        if (head == null) {
+            return null;
+        }
+        
+        
+        ListNode fFinalList = new ListNode();
+        ListNode rFFinalList = new ListNode();
+        ListNode sFinalList = new ListNode();
+        ListNode rSFinalList = new ListNode();
+        
+        ListNode pointerOne = head; //stay at head
+        ListNode pointerTwo = head; //move to subsequent spot
+        ListNode pointerThree = head; //counts the length of list, then subtract by k (careful with looping)
+        
+        int lengthCount = 0;
+    
+        while (pointerThree != null) {
+            pointerThree = pointerThree.next;
+            lengthCount++;
+        }
+
+        while (k > lengthCount) { //adjust to loop
+            k -= lengthCount;
+        }
+        
+        if ((k == 0) || (k == lengthCount)) { //if nothing happens
+              return head;  
+        }
+
+        lengthCount -= k; //steps pointerTwo will take
+        
+        System.out.println(lengthCount);
+
+        for (int i = 0; i < lengthCount; i++) {
+            pointerTwo = pointerTwo.next;
+        }
+
+        ListNode marker = pointerTwo; //to mark where pointerOne can stop
+
+        boolean fFirst = true;
+        boolean sFirst = true;
+        
+        for (int i = 0; i < lengthCount; i++) { //first half
+            if (fFirst) {
+                fFinalList = pointerOne;
+                pointerOne = pointerOne.next;
+                rFFinalList = fFinalList;
+                fFirst = false;
+            }
+            else {
+                fFinalList.next = pointerOne;
+                fFinalList = fFinalList.next;
+                pointerOne = pointerOne.next;
+            }
+        }
+        
+        fFinalList.next = null;
+
+        while (pointerTwo != null) { //second half
+            if (sFirst) {
+                sFinalList = pointerTwo;
+                pointerTwo = pointerTwo.next;
+                rSFinalList = sFinalList;
+                sFirst = false;
+            }
+            else {
+                sFinalList.next = pointerTwo;
+                sFinalList = sFinalList.next;
+                pointerTwo = pointerTwo.next;
+            }
+        }
+        
+        sFinalList.next = rFFinalList;
+
+        return rSFinalList;
+    }
+}
