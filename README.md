@@ -5,7 +5,7 @@ Repository full of Java Projects.
 Contains:
   - Personal LeetCodes Solutions
   - Projects
-  - (More to come)
+  - (More in progress)
   
 Favorite Projects:
   - Alien Encoding (Actually Easy)
