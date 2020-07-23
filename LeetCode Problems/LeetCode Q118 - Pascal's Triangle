@@ -1,0 +1,33 @@
+class Solution {
+    public List<List<Integer>> generate(int numRows) {
+        if (numRows == 0) {
+            return new ArrayList<List<Integer>>();
+        }
+        
+        List<List<Integer>> pascalRows = new ArrayList<List<Integer>>();
+        
+        for (int i = 1; i < numRows+1; i++) {
+            List<Integer> newRow = new ArrayList<Integer>();
+            if (i > 2) {
+                for (int j = 0; j < i; j++) {
+                    if ((j == 0) || (j == i-1)) {
+                        newRow.add(1);
+                    }
+                    else {
+                        List<Integer> prevRow = pascalRows.get(pascalRows.size() - 1);
+                        newRow.add(prevRow.get(j - 1) + prevRow.get(j));
+                    }
+                }
+            }
+            else {
+                for (int j = 0; j < i; j++) {
+                    newRow.add(1);
+                }
+            }
+            pascalRows.add(newRow);
+        }
+        
+        
+        return pascalRows;
+    }
+}
