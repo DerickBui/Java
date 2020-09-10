@@ -1,0 +1,26 @@
+class Solution {
+    public List<String> fizzBuzz(int n) {
+        ArrayList<String> stList = new ArrayList<String>();
+        
+        if (n == 0) {
+            return stList;
+        }
+        
+        for (int i = 1; i < (n + 1); i++) {
+            if (((i % 3) == 0) && ((i % 5) == 0)) {
+                stList.add("FizzBuzz");
+            }
+            else if ((i % 3) == 0) {
+                stList.add("Fizz");
+            }
+            else if ((i % 5) == 0) {
+                stList.add("Buzz");
+            }
+            else {
+                stList.add("" + i);
+            }
+        }
+        
+        return stList;
+    }
+}
