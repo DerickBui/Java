@@ -1,15 +1,19 @@
 class Solution {
     public int[] twoSum(int[] nums, int target) {
-        //int[] answer = new int[2];
+        Map<Integer, Integer> quickRef = new HashMap<Integer, Integer>();
+        
+        int [] result = new int[2];
         
         for (int i = 0; i < nums.length; i++) {
-            for (int j = i + 1; j < nums.length; j++) {
-                int sum = nums[i] + nums[j];
-                if (sum == target) {
-                    return new int[] {i,j};
-                }
+            if (quickRef.containsKey(target - nums[i])) {
+                result[0] = quickRef.get(target - nums[i]);
+                result[1] = i; 
+            }
+            else {
+                quickRef.put(nums[i], i);
             }
         }
-        return new int[] {0,0};
+        
+        return result;
     }
 }
