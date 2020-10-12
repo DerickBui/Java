@@ -1,0 +1,23 @@
+class Solution {
+    public int[] sortArrayByParity(int[] A) {
+        if ((A.length == 0) || (A.length == 1)) {
+            return A;
+        }
+        
+        int [] retList = new int[A.length];
+        int startPointer = 0;
+        int endPointer = A.length - 1;
+        
+        for (int i = 0; i < A.length; i++) {
+            if ((A[i] % 2) == 0) {
+                retList[startPointer] = A[i];
+                startPointer++;
+            }
+            else {
+                retList[endPointer] = A[i];
+                endPointer--;
+            }
+        }
+        return retList;
+    }
+}
