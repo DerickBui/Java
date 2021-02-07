@@ -1,0 +1,37 @@
+class Solution {
+    public String longestPalindrome(String s) {
+        if (s.isEmpty() || s.length() == 1) {
+            return s;
+        }
+        
+        String savedString = s.substring(0,1);
+        
+        for (int i = 0; i < s.length(); i++) {
+            String word1 = palinSearch(i, i, s);
+            String word2 = palinSearch(i, i+1, s);
+            
+            if (word1.length() >= word2.length()) {
+                if (word1.length() > savedString.length()) {
+                    savedString = word1;
+                }
+            }
+            else {
+                if (word2.length() > savedString.length()) {
+                    savedString = word2;
+                }
+            }
+        }
+        return savedString;
+    }
+    
+    public String palinSearch(int l, int r, String s) {
+        String savedString = "";
+        
+        while ((l >= 0) && (r <= s.length() - 1) && (s.charAt(l) == s.charAt(r))) {
+            savedString = s.substring(l, r+1);
+            l--;
+            r++;
+        }
+        return savedString;
+    }
+}
