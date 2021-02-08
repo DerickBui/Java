@@ -1,0 +1,21 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        if ((nums.length != 0 || k != 0) && nums.length != 1) {
+            k %= nums.length; // Create offset to prevent overflow
+            reverse(0, nums.length - 1, nums); // Reverse whole array
+            reverse(0, k - 1, nums); // Reverse left side
+            reverse(k, nums.length - 1, nums); // Reverse right side
+        }
+    }
+    
+    public void reverse(int start, int end, int[] nums) { // Reverse array
+        while (start <= end) {
+            int temp = nums[start]; // Save value
+            nums[start] = nums[end]; // end value -> start value
+            nums[end] = temp; // Saved value -> end value
+            
+            start++;
+            end--;
+        }
+    }
+}
