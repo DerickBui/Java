@@ -1,0 +1,66 @@
+class Solution {
+    public boolean isOneEditDistance(String s, String t) {
+        if (s.isEmpty() && t.isEmpty()) {
+            return false;
+        }
+        
+        if ((s.isEmpty() && t.length() > 1) || (s.length() > 1 && t.isEmpty())) {
+            return false;
+        }
+        
+        if ((s.isEmpty() && t.length() == 1) || (s.length() == 1 && t.isEmpty())) {
+            return true;
+        }
+        
+        if (s.length() < t.length()) {
+            return oneMore(s,t);
+        }
+        else if (s.length() > t.length()) {
+            return oneMore(t,s);
+        }
+        else {
+            return oneChange(s,t);
+        }
+    }
+    
+    public boolean oneMore(String lesserString, String greaterString) {
+        int i = 0;
+        int j = 0;
+        int difference = greaterString.length();
+        
+        while (i < lesserString.length() && j < greaterString.length()) {
+            if (lesserString.charAt(i) == greaterString.charAt(j)) {
+                difference--;
+            }
+            else {
+                i--;
+            }
+            
+            i++;
+            j++;
+        }
+        
+        if (difference == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+    
+    public boolean oneChange(String s, String t) {
+        int difference = 0;
+        for (int i = 0; i < s.length(); i++) {
+            if (s.charAt(i) != t.charAt(i)) {
+                difference++;
+            }
+        }
+        
+        if (difference == 1) {
+            return true;
+        }
+        else {
+            return false;
+        }
+    }
+}
